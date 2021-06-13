@@ -28,3 +28,80 @@ typical algorithms on arrays, called graal —GeneRic Array Algorithms Library. 
 this generic library we want to demonstrate the importance of programming abstraction and
 code reuse while developing an application in the next exercise.
 -->
+
+## O padrão de programação orientado à Iteradores (Iterator Programmint Pattern)
+
+Um _Iterator_ é usualmente representado por um objeto(uma instancia de uma Classe do paradígma de Programação Orientado à Objetos)
+que pode iterar sobre um container(que usualmente, também é um Objeto) sem saber como o container é implementado ou funciona internamente.
+Na STL, os iteradores são o método mais usado para acessar os elmentos em listas e outros containers.
+
+Por exemplo, se quisermos itear sobre todos os elementos em um `std::vector` de inteiros para imprimir todos os elementos o código seria desta forma:
+
+``c++
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    vector<int> vect;               // Declara um vetor de inteiros.
+    for (auto i(0) ; i < 6 ; ++i)
+        vect.push_back(i);          // Insere elementos no vetor
+    vector<int>::const_iterator it; // Declara um iterator
+    it = vect.begin();              // Atribui ao iterator o inicio do vetor
+    while (it != vect.end()) {      // Enquanto não chegou no fim
+        cout << *it << " ";         // imprime o valor do elemento "apontado" pelo iterato
+        ++it;                       // move para o próximo elemento
+    }
+    cout << endl;
+}
+``
+Veja que o uso dos Iterators é muito similar aos __ponteiros__. De fato, informalmente, um Iterator pode ser uma representação
+de um ponteiro encapsulada em uma representação mais abstrata(e com mais possibilidades).
+
+Quando virmos mais à frente alguns containers da STL, vocé constatará que todas essas classes tem quatro métodos básicos que são projetados
+para ajudar ao usuário interar sobre os elementos:
+- begin() retorna um _iterator_ que aponta para o primeiro elemento de um container
+- end() retorna um _iterator_ que aponta para o final de um container. O final é representado por uma posição que está logo após o último elemento.
+- cbegin() retorna um _iterator_ (read-only) que aponta para o primeiro elemento de um container
+- cend() retorna um _iterator_ (read-only) que aponta para o final de um container. O final é representado por uma posição que está logo após o último elemento.
+
+Um fato importante é que os _iterators_ retornados por __cend()__ e __end()__ apontam sempre para uma posição _após_ o ultimo elemento do container, como mostrado abaixo. Dessa forma, se deseramos definir um _range_ de elementos em qualquer container sempre nos referimos a um intervalo \[__begin()__, __end()__) -ou seja, sempre definimos um intevalo
+fechado-aberto!
+
+```
+       begin()                              end()
+          ↓                                   ↓
+Índice |  0|  1| 2| 3|  4|  5| 6| 7|  8| 10|   |
+``` 
+
+
+<!--
+An iterator is a programming pattern that usually is represented by an object (in the context of
+Object Oriented Programming) that can traverse (or iterate over) a container object without
+having to know how the container works internally. In the STL library, this is the primary
+method for accessing elements in lists and associative classes.
+
+For instance, if we wish to iterate over all the elements in, say, a std::vector of integers,
+to print its content we would probably write a code like this:
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    vector<int> vect;               // Creating an vector of integers.
+    for (auto i(0) ; i < 6 ; ++nCount)
+        vect.push_back(i);          // Inserting some elements into the vector.
+    vector<int>::const_iterator it; // Declare a read-only iterator
+    it = vect.begin();              // Assign it to the start of the vector
+    while (it != vect.end()) {      // While it hasn't reach the end
+        cout << *it << " ";         // print the value of the element it points to
+        ++it;                       // and iterate to the next element
+    }
+    cout << endl;
+}
+
+Notice how similar the use of iterator is to a regular pointer. In fact, we may informally
+say that a iterator represents a pointer assigned to an element inside a container class.
+
+Later, when we begin our study on the STL library, you will see that all container classes
+include four basic member functions to help us navigate them:
+-->
