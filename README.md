@@ -70,7 +70,7 @@ fechado-aberto!
 ```
        begin()                              end()
           ↓                                   ↓
-Índice |  0|  1| 2| 3|  4|  5| 6| 7|  8| 10|   |
+Índice |  0|  1| 2| 3|  4|  5| 6| 7|  8| 10|  X|
 ``` 
 
 ## Exercícios
