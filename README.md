@@ -73,35 +73,35 @@ fechado-aberto!
 Índice |  0|  1| 2| 3|  4|  5| 6| 7|  8| 10|   |
 ``` 
 
+## Exercícios
 
-<!--
-An iterator is a programming pattern that usually is represented by an object (in the context of
-Object Oriented Programming) that can traverse (or iterate over) a container object without
-having to know how the container works internally. In the STL library, this is the primary
-method for accessing elements in lists and associative classes.
+Nos exercícios que seguem iremos treinar o uso e implementações com iteradores implementando funções __template__ que podem receber tanto _iterators_ da STL quanto ponteiros
+convencionais em suas chamadas, em ambos os casos, definidos sobre uma espaço sequencial de memória (um stati array ou um container da STL).  Dessa forma, cada vez que 
+uma das funções é chamada, precisamos informar o _range_ onde a função vai operar. 
 
-For instance, if we wish to iterate over all the elements in, say, a std::vector of integers,
-to print its content we would probably write a code like this:
+Por exemplo, se o usuário da função deseja __inverter__ os elementos de um array (usando a função _reverse_), a função deve receber dois ponteiros: um apontando para a posição
+inicial do _range_ e outro apontando para a posição logo após o final do _range_, definindo assim os elementos que devem ser considerados na operação.
 
-#include <iostream>
-#include <vector>
-using namespace std;
-int main() {
-    vector<int> vect;               // Creating an vector of integers.
-    for (auto i(0) ; i < 6 ; ++nCount)
-        vect.push_back(i);          // Inserting some elements into the vector.
-    vector<int>::const_iterator it; // Declare a read-only iterator
-    it = vect.begin();              // Assign it to the start of the vector
-    while (it != vect.end()) {      // While it hasn't reach the end
-        cout << *it << " ";         // print the value of the element it points to
-        ++it;                       // and iterate to the next element
-    }
-    cout << endl;
-}
+De forma similar se o usuário quiser __inverter__ os elementos de um ``std::vector`` inteiro, ele poderá usar a mesma função _reverse_, porém passando dois _iterators_, correspondentes ao __begin()__ e __end()__ daquele vetor. Em termos de programação, não faz diferença já que estamos usando __templates__, lembre que essa funcionalidade do c++
+permite a geração de código "sob demanda" durante a compilação.
 
-Notice how similar the use of iterator is to a regular pointer. In fact, we may informally
-say that a iterator represents a pointer assigned to an element inside a container class.
+Pelo ponto de vista de quem usa a função __reverse__, a chamada é ``reverse(std::being(A), std::end(A))``, onde as funções ``std::begin()`` e ``std::end()`` são definidas na
+biblioteca ``<iteartor>`` e retornam ponteiros para o início e "fim"(lembre que não é o último elemento, mas sim a posição logo após o último) de um array estático ou os 
+iterators apontando para as posições respectivas de _begin()_ e _end()_ de um container. É possível, usando esse mesmo formato, reverter apenas 4 elementos de um array fazendo
+``reverse(std::being(A), std::begin(A)+4)``, atente que o array precisa ter ao menos 4 elementos para que a chamada funcione.
 
-Later, when we begin our study on the STL library, you will see that all container classes
-include four basic member functions to help us navigate them:
--->
+Assim os exercícios que faremos são os seguintes:
+
+1. [minmax](./minmax)
+2. [reverse](./reverse)
+3. [copy](./copy)
+4. [find_if](./find_if)
+5. [find](./find)
+6. [all/any/none_of](./all_any_none_of)
+7. [equal](./equal)
+8. [unique](./unique)
+9. [partition](./partition)
+10. [sort](./sort)
+11. [rotate](./rotate)
+
+
