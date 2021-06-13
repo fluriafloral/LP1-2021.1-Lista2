@@ -37,7 +37,7 @@ Na STL, os iteradores são o método mais usado para acessar os elmentos em list
 
 Por exemplo, se quisermos itear sobre todos os elementos em um `std::vector` de inteiros para imprimir todos os elementos o código seria desta forma:
 
-``c++
+```c++
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -53,7 +53,7 @@ int main() {
     }
     cout << endl;
 }
-``
+```
 Veja que o uso dos Iterators é muito similar aos __ponteiros__. De fato, informalmente, um Iterator pode ser uma representação
 de um ponteiro encapsulada em uma representação mais abstrata(e com mais possibilidades).
 
