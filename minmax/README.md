@@ -23,6 +23,7 @@ bool cmp(const string &a,  const string &b)
 Desta forma, quando a função ``minmax`` for comparar os elementos ela não precisa se preocupar se são strings.
 
 ## Retorno
-A função minmax deve retornar um par com dois itetors, onde o primeiro aponta para o menor elemento e o segundo apenta para o maior elemento.
-Caso o intervalo devinido por \[first, last\) seja vazio, retorne ``std::make_pair(first,fist)``. Se houverem vários elementos com o mesmo
-valor que o menor ou que o maior elemento, sua função deve retornar iteradores que apontam para a primeira ocorrência dos valores no vetor.
+A função minmax deve retornar um par com dois iterators, onde o primeiro aponta para o menor elemento e o segundo aponta para o maior elemento.
+Caso o intervalo definido por \[first, last\) seja vazio, retorne ``std::make_pair(first,fist)``. Se houverem vários elementos com o mesmo
+valor que o menor elemento, sua função deve retornar o iterator que aponta para a __primeira__ ocorrência do valor no intervalo. Se houverem vários
+elementos com o mesmo valor que o maior elemento, sua função deve retornar o iterator que aponta para a __última__ ocorrencia dele no intervalo.
